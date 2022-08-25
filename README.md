@@ -1,7 +1,5 @@
 # Overview
 
-バッジ載せる
-
 Logs before and(or) after the function.
 Use it as a debugging tool.
 
@@ -310,7 +308,7 @@ example:
 If `bottom_log`, specify `word` instead of `bottom_word`.
 
 ```python
-@top_log(word="end")
+@bottom_log(word="end")
 # [INFO] 2022-08-25 22:02:02.849391 end
 ```
 
