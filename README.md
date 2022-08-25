@@ -1,3 +1,5 @@
+![PyPI](https://img.shields.io/pypi/v/function-burger)
+
 # function-burger🍔 Overview
 
 `function-burger`🍔 is a library that outputs logs before and(or) after a function.
