@@ -97,6 +97,31 @@ def burger_log(
     top_word: str = "",
     bottom_word: str = "",
 ) -> Callable:
+    """Output logs before and after each function call.
+
+    Args:
+        level (LogLevel, optional): Specify the log level.
+        timestamp (bool, optional): Specify timestamp output.
+        elapsed_time (bool, optional): Specify elapsed time output.
+        fname (bool, optional): Specifies the output of the function name.
+        tid (bool, optional): Specifies the output of the thread ID.
+        inputval (bool, optional): Specifies the output of the input value.
+        inputval_func (Optional[Callable], optional):
+            Specifies a function to edit the output format of input values.
+        retval (bool, optional): Specifies the output of the return value.
+        retval_func (Optional[Callable], optional):
+            Specifies a function to edit the output format of the return value.
+        word (str, optional): Specifies the string to be output to the log.
+        top_word (str, optional):
+            Specifies the string to be output to the log
+            before the function call.
+        bottom_word (str, optional):
+            Specifies the string to be output to the log
+            after a function call.
+
+    Returns:
+        Callable: log output function.
+    """
     return _log(
         level=level,
         pos=LogPosition.BURGER,
@@ -122,6 +147,21 @@ def top_log(
     inputval_func: Optional[Callable] = None,
     word: str = "",
 ) -> Callable:
+    """Output log before function call.
+
+    Args:
+        level (LogLevel, optional): Specify the log level.
+        timestamp (bool, optional): Specify timestamp output.
+        fname (bool, optional): Specifies the output of the function name.
+        tid (bool, optional): Specifies the output of the thread ID.
+        inputval (bool, optional): Specifies the output of the input value.
+        inputval_func (Optional[Callable], optional):
+            Specifies a function to edit the output format of input values.
+        word (str, optional): Specifies the string to be output to the log.
+
+    Returns:
+        Callable: log output function.
+    """
     return _log(
         level=level,
         pos=LogPosition.HEAD,
@@ -144,6 +184,22 @@ def bottom_log(
     retval_func: Optional[Callable] = None,
     word: str = "",
 ) -> Callable:
+    """Output log after function call.
+
+    Args:
+        level (LogLevel, optional): Specify the log level.
+        timestamp (bool, optional): Specify timestamp output.
+        elapsed_time (bool, optional): Specify elapsed time output.
+        fname (bool, optional): Specifies the output of the function name.
+        tid (bool, optional): Specifies the output of the thread ID.
+        retval (bool, optional): Specifies the return output.
+        retval_func (Optional[Callable], optional):Specifies the function
+            to edit the output value of the return value.
+        word (str, optional): Specifies the string to be output to the log.
+
+    Returns:
+        Callable: log output function.
+    """
     return _log(
         level=level,
         pos=LogPosition.BOTTOM,
