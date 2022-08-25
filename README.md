@@ -1,4 +1,6 @@
-![PyPI](https://img.shields.io/pypi/v/function-burger)
+<a href="https://pypi.org/project/function-burger" target="_blank">
+    <img alt="PyPI" src="https://img.shields.io/pypi/v/function-burger?color=informational">
+</a>
 
 # function-burger🍔 Overview
 
