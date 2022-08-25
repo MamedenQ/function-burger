@@ -1,3 +1,5 @@
+# function-burger 🍔 by shinya_sun_sun, MIT license
+
 from test.support import captured_stdout
 
 from function_burger import bottom_log, top_log

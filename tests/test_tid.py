@@ -1,3 +1,5 @@
+# function-burger 🍔 by shinya_sun_sun, MIT license
+
 import threading as th
 from test.support import captured_stdout
 

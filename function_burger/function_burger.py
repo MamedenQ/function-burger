@@ -1,3 +1,5 @@
+# function-burger 🍔 by shinya_sun_sun, MIT license
+
 import datetime
 import threading as th
 from enum import Enum, auto
