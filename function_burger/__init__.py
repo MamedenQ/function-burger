@@ -7,3 +7,5 @@ from .function_burger import (
     top_log,
     bottom_log,
 )
+
+__version__ = "0.1.0"
