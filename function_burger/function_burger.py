@@ -54,28 +54,35 @@ def _log(
                         log_s = log_s + f" args[{args}] keywords[{keywords}]"
                 print(log_s)
 
-            ret = f(*args, **keywords)
-
-            if pos != LogPosition.TOP:
-                time_e = datetime.datetime.now()
-                log_e = f"[{level.name}]"
-                if timestamp:
-                    log_e = log_e + f" {time_e}"
-                if tid:
-                    log_e = log_e + f" [{th.get_ident()}]"
-                if fname:
-                    log_e = log_e + f" func[{f.__name__}]"
-                if len(bottom_word):
-                    log_e = log_e + f" {bottom_word}"
-                if elapsed_time:
-                    log_e = log_e + f" elapsed time[{time_e - time_s}]"
-                if retval:
-                    if ret and retval_func:
-                        v = retval_func(ret)
-                        log_e = log_e + f" ret[{v}]"
-                    else:
-                        log_e = log_e + f" ret[{ret}]"
-                print(log_e)
+            bk_e = None
+            try:
+                ret = f(*args, **keywords)
+            except Exception as e:
+                bk_e = e
+                raise e
+            finally:
+                if pos != LogPosition.TOP:
+                    time_e = datetime.datetime.now()
+                    log_e = f"[{level.name}]"
+                    if timestamp:
+                        log_e = log_e + f" {time_e}"
+                    if tid:
+                        log_e = log_e + f" [{th.get_ident()}]"
+                    if fname:
+                        log_e = log_e + f" func[{f.__name__}]"
+                    if len(bottom_word):
+                        log_e = log_e + f" {bottom_word}"
+                    if elapsed_time:
+                        log_e = log_e + f" elapsed time[{time_e - time_s}]"
+                    if bk_e:
+                        log_e = log_e + f" except[{bk_e}]"
+                    elif retval:
+                        if ret and retval_func:
+                            v = retval_func(ret)
+                            log_e = log_e + f" ret[{v}]"
+                        else:
+                            log_e = log_e + f" ret[{ret}]"
+                    print(log_e)
 
             return ret
 
