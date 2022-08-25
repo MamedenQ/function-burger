@@ -1,6 +1,6 @@
-# Overview
+# function-burger🍔 Overview
 
-Logs before and(or) after the function.
+`function-burger`🍔 is a library that outputs logs before and(or) after a function.
 Use it as a debugging tool.
 
 # Installation
