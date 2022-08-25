@@ -12,7 +12,7 @@ class LogLevel(Enum):
 
 
 class LogPosition(Enum):
-    HEAD = auto()
+    TOP = auto()
     BOTTOM = auto()
     BURGER = auto()
 
@@ -56,7 +56,7 @@ def _log(
 
             ret = f(*args, **keywords)
 
-            if pos != LogPosition.HEAD:
+            if pos != LogPosition.TOP:
                 time_e = datetime.datetime.now()
                 log_e = f"[{level.name}]"
                 if timestamp:
@@ -164,7 +164,7 @@ def top_log(
     """
     return _log(
         level=level,
-        pos=LogPosition.HEAD,
+        pos=LogPosition.TOP,
         timestamp=timestamp,
         fname=fname,
         tid=tid,
