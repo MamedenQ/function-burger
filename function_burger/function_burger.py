@@ -49,26 +49,28 @@ def _log(
         def _wrapper(*args: Any, **keywords: Dict[str, Any]) -> Any:
             time_s = datetime.datetime.now()
             if pos != LogPosition.BOTTOM:
-                log_s = f"{level.value[0]}[{level.name}]{level.value[1]}"
-                log_s = log_s + f"{color.value[0]}"
+                log_s = []
+                log_s.append(f"{level.value[0]}[{level.name}]{level.value[1]}")
+                log_s[-1] = log_s[-1] + f"{color.value[0]}"
+
                 if timestamp:
-                    log_s = log_s + f" {time_s}"
+                    log_s.append(f"{time_s}")
                 if tid:
-                    log_s = log_s + f" [{th.get_ident()}]"
+                    log_s.append(f"[{th.get_ident()}]")
                 if fname:
-                    log_s = log_s + f" func[{f.__name__}]"
+                    log_s.append(f"func[{f.__name__}]")
                 if len(top_word):
-                    log_s = log_s + f" {top_word}"
+                    log_s.append(f"{top_word}")
                 if inputval:
                     if inputval_func:
-                        log_s = (
-                            log_s
-                            + f" args[{inputval_func(*args, **keywords)}]"
+                        log_s.append(
+                            f"args[{inputval_func(*args, **keywords)}]"
                         )
                     else:
-                        log_s = log_s + f" args[{args}] keywords[{keywords}]"
-                log_s = log_s + f"{color.value[1]}"
-                print(log_s)
+                        log_s.append(f"args[{args}] keywords[{keywords}]")
+                log_s[-1] = log_s[-1] + f"{color.value[1]}"
+
+                print(" ".join(log_s))
 
             bk_e = None
             try:
@@ -79,30 +81,33 @@ def _log(
             finally:
                 if pos != LogPosition.TOP:
                     time_e = datetime.datetime.now()
-                    log_e = f"{level.value[0]}[{level.name}]{level.value[1]}"
-                    log_e = log_e + f"{color.value[0]}"
+                    log_e = []
+                    log_e.append(
+                        f"{level.value[0]}[{level.name}]{level.value[1]}"
+                    )
+                    log_e[-1] = log_e[-1] + f"{color.value[0]}"
+
                     if timestamp:
-                        log_e = log_e + f" {time_e}"
+                        log_e.append(f"{time_e}")
                     if tid:
-                        log_e = log_e + f" [{th.get_ident()}]"
+                        log_e.append(f"[{th.get_ident()}]")
                     if fname:
-                        log_e = log_e + f" func[{f.__name__}]"
+                        log_e.append(f"func[{f.__name__}]")
                     if len(bottom_word):
-                        log_e = log_e + f" {bottom_word}"
+                        log_e.append(f"{bottom_word}")
                     if elapsed_time:
-                        log_e = log_e + f" elapsed time[{time_e - time_s}]"
+                        log_e.append(f"elapsed time[{time_e - time_s}]")
                     if bk_e:
-                        log_e = (
-                            log_e + f" \033[7m\033[31mexcept[{bk_e}]\033[0m"
-                        )
+                        log_e.append(f"\033[7m\033[31mexcept[{bk_e}]\033[0m")
                     elif retval:
                         if ret and retval_func:
                             v = retval_func(ret)
-                            log_e = log_e + f" ret[{v}]"
+                            log_e.append(f"ret[{v}]")
                         else:
-                            log_e = log_e + f" ret[{ret}]"
-                    log_e = log_e + f"{color.value[1]}"
-                    print(log_e)
+                            log_e.append(f"ret[{ret}]")
+                    log_e[-1] = log_e[-1] + f"{color.value[1]}"
+
+                    print(" ".join(log_e))
 
             return ret
 
