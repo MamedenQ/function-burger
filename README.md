@@ -1,6 +1,16 @@
+<a href="https://github.com/MamedenQ/function-burger/actions?query=workflow%3Aunit-test+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/MamedenQ/function-burger/workflows/unit-test/badge.svg?event=push&branch=master" alt="Test">
+</a>
 <a href="https://pypi.org/project/function-burger" target="_blank">
     <img alt="PyPI" src="https://img.shields.io/pypi/v/function-burger?color=informational">
 </a>
+<a href="https://pypi.org/project/function-burger" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/function-burger.svg?color=informational" alt="Supported Python versions">
+</a>
+<!-- https://docs.codecov.com/docs/quick-start -->
+<!-- <a href="https://codecov.io/gh/MamedenQ/function-burger" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/MamedenQ/function-burger" alt="Coverage">
+</a> -->
 
 # function-burger🍔 Overview
 
