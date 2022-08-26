@@ -110,6 +110,7 @@ option table:
 | retval_func  |  ○ |   |  ○ |
 | top_word *1  |  ○ | ○  |   |
 | bottom_word *2  |  ○ |   |  ○ |
+| color  |  ○ | ○  |  ○ |
 
 ○:Available
 
@@ -124,6 +125,9 @@ Specify the log level.
 - `LogLevel.WARNING`
 - `LogLevel.ERROR`
 - `LogLevel.VERBOSE`
+
+Each log level is color-coded.
+![loglevel_color](docs/img/log_level_color.png)
 
 example:
 ```python
@@ -325,6 +329,41 @@ If `bottom_log`, specify `word` instead of `bottom_word`.
 @bottom_log(word="end")
 # [INFO] 2022-08-25 22:02:02.849391 end
 ```
+
+## color
+
+Specifies the text color of the log.
+
+- `LogColor.VANILLA_SHAKE`(default)
+- `LogColor.MUSTARD`
+- `LogColor.KETCHUP`
+- `LogColor.MINT_CHOCOLATE`
+- `LogColor.SODA`
+- `LogColor.LETTUCE`
+- `LogColor.GRAPE_JUICE`
+- `LogColor.COLA`
+
+![log_color](docs/img/log_color.png)
+
+example:
+```python
+@burger_log(color=LogColor.KETCHUP)
+# Output contents are omitted. See image above for colors.
+```
+
+# when an exception occurs
+
+When an exception occurs, a message is forced to be displayed.
+
+```python
+@burger_log()
+def example():
+    raise Exception("An exception occurred.")
+
+example()
+```
+
+![exception](docs/img/exception.png)
 
 # License
 
