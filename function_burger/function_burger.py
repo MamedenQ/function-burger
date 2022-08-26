@@ -3,7 +3,7 @@
 import datetime
 import threading as th
 from enum import Enum, auto
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Dict, Optional
 
 
 class LogLevel(Enum):
@@ -46,7 +46,7 @@ def _log(
     color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     def _inner(f: Callable) -> Callable:
-        def _wrapper(*args: Any, **keywords: dict[str, Any]) -> Any:
+        def _wrapper(*args: Any, **keywords: Dict[str, Any]) -> Any:
             time_s = datetime.datetime.now()
             if pos != LogPosition.BOTTOM:
                 log_s = f"{level.value[0]}[{level.name}]{level.value[1]}"
