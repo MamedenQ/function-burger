@@ -19,6 +19,17 @@ class LogPosition(Enum):
     BURGER = auto()
 
 
+class LogColor(Enum):
+    VANILLA_SHAKE = ("", "")
+    MUSTARD = ("\033[33m", "\033[0m")
+    KETCHUP = ("\033[31m", "\033[0m")
+    MINT_CHOCOLATE = ("\033[36m", "\033[0m")
+    SODA = ("\033[34m", "\033[0m")
+    LETTUCE = ("\033[32m", "\033[0m")
+    GRAPE_JUICE = ("\033[35m", "\033[0m")
+    COLA = ("\033[30m", "\033[0m")
+
+
 def _log(
     level: LogLevel = LogLevel.INFO,
     pos: LogPosition = LogPosition.BURGER,
@@ -32,12 +43,14 @@ def _log(
     retval_func: Optional[Callable] = None,
     top_word: str = "",
     bottom_word: str = "",
+    color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     def _inner(f: Callable) -> Callable:
         def _wrapper(*args: Any, **keywords: dict[str, Any]) -> Any:
             time_s = datetime.datetime.now()
             if pos != LogPosition.BOTTOM:
                 log_s = f"{level.value[0]}[{level.name}]{level.value[1]}"
+                log_s = log_s + f"{color.value[0]}"
                 if timestamp:
                     log_s = log_s + f" {time_s}"
                 if tid:
@@ -54,6 +67,7 @@ def _log(
                         )
                     else:
                         log_s = log_s + f" args[{args}] keywords[{keywords}]"
+                log_s = log_s + f"{color.value[1]}"
                 print(log_s)
 
             bk_e = None
@@ -66,6 +80,7 @@ def _log(
                 if pos != LogPosition.TOP:
                     time_e = datetime.datetime.now()
                     log_e = f"{level.value[0]}[{level.name}]{level.value[1]}"
+                    log_e = log_e + f"{color.value[0]}"
                     if timestamp:
                         log_e = log_e + f" {time_e}"
                     if tid:
@@ -86,6 +101,7 @@ def _log(
                             log_e = log_e + f" ret[{v}]"
                         else:
                             log_e = log_e + f" ret[{ret}]"
+                    log_e = log_e + f"{color.value[1]}"
                     print(log_e)
 
             return ret
@@ -107,6 +123,7 @@ def burger_log(
     retval_func: Optional[Callable] = None,
     top_word: str = "",
     bottom_word: str = "",
+    color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     """Output logs before and after each function call.
 
@@ -129,6 +146,8 @@ def burger_log(
         bottom_word (str, optional):
             Specifies the string to be output to the log
             after a function call.
+        color (LogColor, optional):
+            Specifies the text color of the log.
 
     Returns:
         Callable: log output function.
@@ -146,6 +165,7 @@ def burger_log(
         retval_func=retval_func,
         top_word=top_word,
         bottom_word=bottom_word,
+        color=color,
     )
 
 
@@ -157,6 +177,7 @@ def top_log(
     inputval: bool = False,
     inputval_func: Optional[Callable] = None,
     word: str = "",
+    color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     """Output log before function call.
 
@@ -169,6 +190,8 @@ def top_log(
         inputval_func (Optional[Callable], optional):
             Specifies a function to edit the output format of input values.
         word (str, optional): Specifies the string to be output to the log.
+        color (LogColor, optional):
+            Specifies the text color of the log.
 
     Returns:
         Callable: log output function.
@@ -182,6 +205,7 @@ def top_log(
         inputval=inputval,
         inputval_func=inputval_func,
         top_word=word,
+        color=color,
     )
 
 
@@ -194,6 +218,7 @@ def bottom_log(
     retval: bool = False,
     retval_func: Optional[Callable] = None,
     word: str = "",
+    color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     """Output log after function call.
 
@@ -207,6 +232,8 @@ def bottom_log(
         retval_func (Optional[Callable], optional):Specifies the function
             to edit the output value of the return value.
         word (str, optional): Specifies the string to be output to the log.
+        color (LogColor, optional):
+            Specifies the text color of the log.
 
     Returns:
         Callable: log output function.
@@ -221,4 +248,5 @@ def bottom_log(
         retval=retval,
         retval_func=retval_func,
         bottom_word=word,
+        color=color,
     )
