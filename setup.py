@@ -5,7 +5,7 @@ from setuptools import setup
 import function_burger
 
 DESCRIPTION = "function-burger🍔 is a library that outputs logs \
-    before and(or) after a function."
+before and(or) after a function."
 NAME = "function-burger"
 AUTHOR = "shinya_sun_sun"
 AUTHOR_EMAIL = "dynabook.miu@gmail.com"
