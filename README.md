@@ -127,6 +127,7 @@ Specify the log level.
 - `LogLevel.VERBOSE`
 
 Each log level is color-coded.
+
 ![loglevel_color](docs/img/log_level_color.png)
 
 example:
