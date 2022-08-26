@@ -7,6 +7,9 @@
 <a href="https://pypi.org/project/function-burger" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/function-burger.svg?color=informational" alt="Supported Python versions">
 </a>
+<a href="https://github.com/MamedenQ/function-burger/blob/master/LICENSE" target="_blank">
+    <img alt="GitHub" src="https://img.shields.io/github/license/MamedenQ/function-burger?color=informational">
+</a>
 <!-- https://docs.codecov.com/docs/quick-start -->
 <!-- <a href="https://codecov.io/gh/MamedenQ/function-burger" target="_blank">
     <img src="https://img.shields.io/codecov/c/github/MamedenQ/function-burger" alt="Coverage">
