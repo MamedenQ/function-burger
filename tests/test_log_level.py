@@ -23,7 +23,9 @@ def test_top_level(level: LogLevel, ans: str) -> None:
     with captured_stdout() as stdout:
         func()
 
-    assert stdout.getvalue() == f"[{ans}] top\n"
+    assert (
+        stdout.getvalue() == f"{level.value[0]}[{ans}]{level.value[1]} top\n"
+    )
 
 
 @pytest.mark.parametrize(
@@ -43,4 +45,7 @@ def test_bottom_level(level: LogLevel, ans: str) -> None:
     with captured_stdout() as stdout:
         func()
 
-    assert stdout.getvalue() == f"[{ans}] bottom\n"
+    assert (
+        stdout.getvalue()
+        == f"{level.value[0]}[{ans}]{level.value[1]} bottom\n"
+    )

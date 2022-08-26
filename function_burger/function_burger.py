@@ -7,10 +7,10 @@ from typing import Any, Callable, Optional
 
 
 class LogLevel(Enum):
-    INFO = auto()
-    WARN = auto()
-    ERROR = auto()
-    VERBOSE = auto()
+    INFO = ("", "")
+    WARN = ("\033[33m", "\033[0m")
+    ERROR = ("\033[31m", "\033[0m")
+    VERBOSE = ("\033[35m", "\033[0m")
 
 
 class LogPosition(Enum):
@@ -37,7 +37,7 @@ def _log(
         def _wrapper(*args: Any, **keywords: dict[str, Any]) -> Any:
             time_s = datetime.datetime.now()
             if pos != LogPosition.BOTTOM:
-                log_s = f"[{level.name}]"
+                log_s = f"{level.value[0]}[{level.name}]{level.value[1]}"
                 if timestamp:
                     log_s = log_s + f" {time_s}"
                 if tid:
@@ -65,7 +65,7 @@ def _log(
             finally:
                 if pos != LogPosition.TOP:
                     time_e = datetime.datetime.now()
-                    log_e = f"[{level.name}]"
+                    log_e = f"{level.value[0]}[{level.name}]{level.value[1]}"
                     if timestamp:
                         log_e = log_e + f" {time_e}"
                     if tid:
@@ -77,7 +77,9 @@ def _log(
                     if elapsed_time:
                         log_e = log_e + f" elapsed time[{time_e - time_s}]"
                     if bk_e:
-                        log_e = log_e + f" except[{bk_e}]"
+                        log_e = (
+                            log_e + f" \033[7m\033[31mexcept[{bk_e}]\033[0m"
+                        )
                     elif retval:
                         if ret and retval_func:
                             v = retval_func(ret)

@@ -17,4 +17,6 @@ def test_top_except() -> None:
         except Exception:
             pass
 
-    assert stdout.getvalue() == "[INFO] except[except!!!]\n"
+    assert (
+        stdout.getvalue() == "[INFO] \033[7m\033[31mexcept[except!!!]\033[0m\n"
+    )
