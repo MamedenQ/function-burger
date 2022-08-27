@@ -134,7 +134,7 @@ option table:
 Specify the log level.
 
 - `LogLevel.INFO`(default)
-- `LogLevel.WARNING`
+- `LogLevel.WARN`
 - `LogLevel.ERROR`
 - `LogLevel.VERBOSE`
 
@@ -147,8 +147,8 @@ example:
 @burger_log()
 # [INFO] 2022-08-25 22:02:02.849391
 
-@burger_log(level=LogLevel.WARNING)
-# [WARNING] 2022-08-25 22:02:02.849391
+@burger_log(level=LogLevel.WARN)
+# [WARN] 2022-08-25 22:02:02.849391
 ```
 
 ## timestamp
