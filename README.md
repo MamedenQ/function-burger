@@ -52,7 +52,7 @@ from function_burger import burger_log
 def example_func(input_str):
     print(f"input_str[{input_str}]")
 
-example_func()
+example_func("example!!")
 ```
 
 result:
@@ -73,7 +73,7 @@ from function_burger import top_log
 def example_func(input_str):
     print(f"input_str[{input_str}]")
 
-example_func()
+example_func("example!!")
 ```
 
 result:
@@ -93,7 +93,7 @@ from function_burger import bottom_log
 def example_func(input_str):
     print(f"input_str[{input_str}]")
 
-example_func()
+example_func("example!!")
 ```
 
 result:
