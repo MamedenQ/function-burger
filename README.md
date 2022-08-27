@@ -29,6 +29,11 @@
 `function-burger`🍔 is a library that outputs logs before and(or) after a function.
 Use it as a debugging tool.
 
+example🍔 here!!<br>
+<a href="https://colab.research.google.com/github/MamedenQ/function-burger/blob/master/example.ipynb" target="_blank">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 # Installation
 
 Install with pip:
