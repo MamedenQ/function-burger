@@ -10,6 +10,9 @@
     <img alt="PyPI" src="https://img.shields.io/pypi/v/function-burger?color=informational">
 </a>
 <a href="https://pypi.org/project/function-burger" target="_blank">
+    <img alt="PyPI - Wheel" src="https://img.shields.io/pypi/wheel/function-burger?color=informational">
+</a>
+<a href="https://pypi.org/project/function-burger" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/function-burger.svg?color=informational" alt="Supported Python versions">
 </a>
 <a href="https://github.com/MamedenQ/function-burger/blob/master/LICENSE" target="_blank">
