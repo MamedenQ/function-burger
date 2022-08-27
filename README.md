@@ -4,6 +4,8 @@
 <img alt="Codecov branch" src="https://img.shields.io/codecov/c/github/MamedenQ/function-burger/master?color=informational">
 <img alt="GitHub commits since tagged version (master)" src="https://img.shields.io/github/commits-since/MamedenQ/function-burger/1.0.0/master?color=informational">
 <img alt="GitHub last commit (master)" src="https://img.shields.io/github/last-commit/MamedenQ/function-burger/master?color=informational">
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MamedenQ/function-burger?style=social">
+<br>
 <a href="https://pypi.org/project/function-burger" target="_blank">
     <img alt="PyPI" src="https://img.shields.io/pypi/v/function-burger?color=informational">
 </a>
