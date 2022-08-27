@@ -5,9 +5,6 @@
     <img src="https://codecov.io/gh/MamedenQ/function-burger/branch/master/graph/badge.svg?token=0KLBCIK5NZ"/>
 </a>
 <a href="https://codecov.io/gh/MamedenQ/function-burger" >
-    <img alt="GitHub commits since tagged version (master)" src="https://img.shields.io/github/commits-since/MamedenQ/function-burger/1.0.0/master?color=informational">
-</a>
-<a href="https://codecov.io/gh/MamedenQ/function-burger" >
     <img alt="GitHub last commit (master)" src="https://img.shields.io/github/last-commit/MamedenQ/function-burger/master?color=informational">
 </a>
 <a href="https://codecov.io/gh/MamedenQ/function-burger" >
