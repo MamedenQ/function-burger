@@ -1,5 +1,5 @@
-<a href="https://github.com/MamedenQ/function-burger/actions?query=workflow%3Aunit-test+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/MamedenQ/function-burger/workflows/unit-test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/MamedenQ/function-burger/actions/workflows/unit-test.yml" target="_blank">
+    <img src="https://github.com/MamedenQ/function-burger/actions/workflows/unit-test.yml/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/MamedenQ/function-burger" >
     <img src="https://codecov.io/gh/MamedenQ/function-burger/branch/master/graph/badge.svg?token=0KLBCIK5NZ"/>
