@@ -138,6 +138,7 @@ option table:
 
 Specify the log level.
 
+- `LogLevel.DEBUG`
 - `LogLevel.INFO`(default)
 - `LogLevel.WARN`
 - `LogLevel.ERROR`
@@ -369,7 +370,7 @@ example:
 # Output contents are omitted. See image above for colors.
 ```
 
-# when an exception occurs
+# When an exception occurs
 
 When an exception occurs, a message is forced to be displayed.
 
