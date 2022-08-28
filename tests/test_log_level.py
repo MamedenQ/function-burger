@@ -9,6 +9,7 @@ from function_burger import LogLevel, bottom_log, top_log
 @pytest.mark.parametrize(
     "level, ans",
     [
+        (LogLevel.DEBUG, "DEBUG"),
         (LogLevel.INFO, "INFO"),
         (LogLevel.WARN, "WARN"),
         (LogLevel.ERROR, "ERROR"),
@@ -31,6 +32,7 @@ def test_top_level(level: LogLevel, ans: str) -> None:
 @pytest.mark.parametrize(
     "level, ans",
     [
+        (LogLevel.DEBUG, "DEBUG"),
         (LogLevel.INFO, "INFO"),
         (LogLevel.WARN, "WARN"),
         (LogLevel.ERROR, "ERROR"),

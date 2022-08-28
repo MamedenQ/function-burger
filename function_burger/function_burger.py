@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, Optional
 
 
 class LogLevel(Enum):
+    DEBUG = ("\033[36m", "\033[0m")
     INFO = ("", "")
     WARN = ("\033[33m", "\033[0m")
     ERROR = ("\033[31m", "\033[0m")
