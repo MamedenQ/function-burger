@@ -3,6 +3,7 @@
 import datetime
 import threading as th
 from enum import Enum, auto
+from functools import wraps
 from typing import Any, Callable, Dict, Optional
 
 
@@ -47,68 +48,82 @@ def _log(
     color: LogColor = LogColor.VANILLA_SHAKE,
 ) -> Callable:
     def _inner(f: Callable) -> Callable:
+        @wraps(f)
         def _wrapper(*args: Any, **keywords: Dict[str, Any]) -> Any:
-            time_s = datetime.datetime.now()
-            if pos != LogPosition.BOTTOM:
-                log_s = []
-                log_s.append(f"{level.value[0]}[{level.name}]{level.value[1]}")
-                log_s[-1] = log_s[-1] + f"{color.value[0]}"
+            time_s = None
+            try:
+                time_s = datetime.datetime.now()
+                if pos != LogPosition.BOTTOM:
+                    log_s = []
+                    log_s.append(
+                        f"{level.value[0]}[{level.name}]{level.value[1]}"
+                    )
+                    log_s[-1] = log_s[-1] + f"{color.value[0]}"
 
-                if timestamp:
-                    log_s.append(f"{time_s}")
-                if tid:
-                    log_s.append(f"[{th.get_ident()}]")
-                if fname:
-                    log_s.append(f"func[{f.__name__}]")
-                if len(top_word):
-                    log_s.append(f"{top_word}")
-                if inputval:
-                    if inputval_func:
-                        log_s.append(
-                            f"args[{inputval_func(*args, **keywords)}]"
-                        )
-                    else:
-                        log_s.append(f"args[{args}] keywords[{keywords}]")
-                log_s[-1] = log_s[-1] + f"{color.value[1]}"
+                    if timestamp:
+                        log_s.append(f"{time_s}")
+                    if tid:
+                        log_s.append(f"[{th.get_ident()}]")
+                    if fname:
+                        log_s.append(f"func[{f.__name__}]")
+                    if len(top_word):
+                        log_s.append(f"{top_word}")
+                    if inputval:
+                        if inputval_func:
+                            log_s.append(
+                                f"args[{inputval_func(*args, **keywords)}]"
+                            )
+                        else:
+                            log_s.append(f"args[{args}] keywords[{keywords}]")
+                    log_s[-1] = log_s[-1] + f"{color.value[1]}"
 
-                print(" ".join(log_s))
+                    print(" ".join(log_s))
+            except Exception:
+                # Logging must not prevent the function from running.
+                pass
 
             bk_e = None
             try:
                 ret = f(*args, **keywords)
-            except Exception as e:
+            except BaseException as e:
                 bk_e = e
-                raise e
+                raise
             finally:
-                if pos != LogPosition.TOP:
-                    time_e = datetime.datetime.now()
-                    log_e = []
-                    log_e.append(
-                        f"{level.value[0]}[{level.name}]{level.value[1]}"
-                    )
-                    log_e[-1] = log_e[-1] + f"{color.value[0]}"
+                try:
+                    if pos != LogPosition.TOP:
+                        time_e = datetime.datetime.now()
+                        log_e = []
+                        log_e.append(
+                            f"{level.value[0]}[{level.name}]{level.value[1]}"
+                        )
+                        log_e[-1] = log_e[-1] + f"{color.value[0]}"
 
-                    if timestamp:
-                        log_e.append(f"{time_e}")
-                    if tid:
-                        log_e.append(f"[{th.get_ident()}]")
-                    if fname:
-                        log_e.append(f"func[{f.__name__}]")
-                    if len(bottom_word):
-                        log_e.append(f"{bottom_word}")
-                    if elapsed_time:
-                        log_e.append(f"elapsed time[{time_e - time_s}]")
-                    if bk_e:
-                        log_e.append(f"\033[7m\033[31mexcept[{bk_e}]\033[0m")
-                    elif retval:
-                        if ret and retval_func:
-                            v = retval_func(ret)
-                            log_e.append(f"ret[{v}]")
-                        else:
-                            log_e.append(f"ret[{ret}]")
-                    log_e[-1] = log_e[-1] + f"{color.value[1]}"
+                        if timestamp:
+                            log_e.append(f"{time_e}")
+                        if tid:
+                            log_e.append(f"[{th.get_ident()}]")
+                        if fname:
+                            log_e.append(f"func[{f.__name__}]")
+                        if len(bottom_word):
+                            log_e.append(f"{bottom_word}")
+                        if elapsed_time:
+                            log_e.append(f"elapsed time[{time_e - time_s}]")
+                        if bk_e is not None:
+                            log_e.append(
+                                f"\033[7m\033[31mexcept[{bk_e}]\033[0m"
+                            )
+                        elif retval:
+                            if retval_func is not None:
+                                v = retval_func(ret)
+                                log_e.append(f"ret[{v}]")
+                            else:
+                                log_e.append(f"ret[{ret}]")
+                        log_e[-1] = log_e[-1] + f"{color.value[1]}"
 
-                    print(" ".join(log_e))
+                        print(" ".join(log_e))
+                except Exception:
+                    # Preserve the function's return value or active exception.
+                    pass
 
             return ret
 

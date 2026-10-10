@@ -46,6 +46,11 @@ pip install function-burger
 
 Simply specify the log output function as a decorator for the function you want to output logs.
 
+The decorators preserve function metadata and expose the original function through
+`__wrapped__`. Logging is best effort: ordinary exceptions from formatting or
+printing a log are ignored so the decorated function keeps its return value or
+original exception.
+
 - burger(burger_log)
 
 Logs are output before and after the function.
@@ -281,7 +286,8 @@ example:
 ## retval_func
 
 Specifies a function to edit the output format of the return value.
-Used when the return value is an object.
+Used when the return value is an object. When `retval=True`, the formatter is
+called for every successful return, including `0`, `False`, `""`, `[]`, and `None`.
 
 - None(default)
 - function or lambda-expression
